@@ -1,0 +1,13 @@
+checkpoints/*.chk
+
+pkls/*.pkl
+
+data/*
+!data/download.py
+!data/full_sic.py
+!data/gen_data_text.sh
+!data/organize.py
+
+test_results/*.npy
+
+train_logs/*.log
