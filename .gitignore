@@ -11,3 +11,4 @@ data/*
 test_results/*.npy
 
 train_logs/*.log
+*.npy

@@ -12,15 +12,20 @@ class IceNet(nn.Module):
         self.configs = configs
         if configs.model == "FH_Mamba":
             self.base_net = FH_Mamba(
-                configs.input_length,
-                configs.input_dim * configs.patch_size[0] * configs.patch_size[1],
-                configs.img_size,
-                configs.patch_size,
-                configs.hid_S,
-                configs.hid_T_channels,
-                configs.N_S,
-                configs.drop,
-                configs.drop_path,
+                t=configs.input_length,
+                c=configs.input_dim * configs.patch_size[0] * configs.patch_size[1],
+                img_size=configs.img_size,
+                patch_size=configs.patch_size,
+                hid_s=configs.hid_S,
+                hid_t=configs.hid_T_channels,
+                n_s=configs.N_S,
+                n_t=getattr(configs, "N_T", 4),
+                spatio_kernel_enc=getattr(configs, "spatio_kernel_enc", 3),
+                spatio_kernel_dec=getattr(configs, "spatio_kernel_dec", 3),
+                act_inplace=getattr(configs, "act_inplace", False),
+                mlp_ratio=getattr(configs, "mlp_ratio", 4.0),
+                drop=configs.drop,
+                drop_path=configs.drop_path,
             )
         else:
             raise ValueError("错误的网络名称，不存在%s这个网络" % configs.model)
