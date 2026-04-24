@@ -94,6 +94,8 @@ def main():
         )
         return
 
+    # evaluation
+    tester.network.eval()
     mse, rmse, mae, nse, psnr, loss, bacc = tester.vali(
         dataloader_test, torch.from_numpy(np.load("arctic_mask.npy"))
     )
